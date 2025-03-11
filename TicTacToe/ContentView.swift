@@ -104,10 +104,7 @@ struct ContentView: View {
         guard board[row][col] == .none else { return }
         
         board[row][col] = currentPlayer
-        
-        if !checkWin(player: currentPlayer) && !isDraw() {
-            currentPlayer = (currentPlayer == .x) ? .o : .x
-        }
+        currentPlayer = (currentPlayer == .x) ? .o : .x
     }
     
     func checkWin(player: Player) -> Bool {
