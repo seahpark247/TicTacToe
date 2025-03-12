@@ -15,8 +15,8 @@ struct Cell: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 50))
-            .frame(width: 80, height: 80)
             .foregroundColor(.black)
+            .frame(width: 80, height: 80)
             .background(.gray.opacity(0.3))
             .cornerRadius(10)
     }
@@ -26,9 +26,9 @@ struct RestartButton: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.title2)
+            .foregroundColor(.white)
             .padding()
             .background(.black.gradient)
-            .foregroundColor(.white)
             .cornerRadius(10)
     }
 }
@@ -58,65 +58,68 @@ extension View {
 struct ContentView: View {
     @State private var board: [[Player]] = Array(repeating: Array(repeating: .none, count: 3), count: 3)
     @State private var currentPlayer: Player = .x
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Text("").frame(maxWidth: .infinity, maxHeight: .infinity).background(.indigo.gradient).ignoresSafeArea()
                 
                 VStack {
-                        HStack{
-                            Spacer()
-                            VStack {
-                                ForEach(0..<3) { row in
-                                    HStack {
-                                        ForEach(0..<3) { col in
-                                            Button {
-                                                makeMove(row: row, col: col)
-                                            } label: {
-                                                Text(board[row][col] == .x ? "X" : board[row][col] == .o ? "O" : "").cellStyle()
-                                            }
+                    HStack {
+                        Spacer()
+                        VStack {
+                            ForEach(0..<3) { col in
+                                HStack {
+                                    ForEach(0..<3) { row in
+                                        Button { makeMove(row: row, col: col) } label: {
+                                            Text(board[row][col] == .x ? "X" : Bool(board[row][col] == .o) ? "O" : "").cellStyle()
+                                            // 버튼 그리고 그 안에 라벨 텍스트에다가 스타일 달아야 함!
                                         }
                                     }
                                 }
-                            }.padding()
-                            Spacer()
+                            }
                         }
-                        .padding()
-                        .background(.regularMaterial)
+                        Spacer()
+                    }
+                    .padding(.vertical, 30)
+                    .background(.regularMaterial)
                     
-                        HStack{
-                            Button("Restart") {
-                                resetGame()
-                            }.buttonStyle()
-                            
-                            Spacer()
-                            
-                            Text(checkWin(player: .x) ? "X is won!" : checkWin(player: .o) ? "O is won!" : isDraw() ? "Draw!" : "playing...").statusStyle()
-                        }.padding()
-                }.navigationTitle("TicTacToe")
-            }
+                    HStack {
+                        Button("Restart") {
+                            resetGame()
+                        }.buttonStyle()
+                        Spacer()
+                        Text(checkWin(player: .x) ? "X is won!" : checkWin(player: .o) ? "O is won!" : isDraw() ? "Draw!" : "Playing...").statusStyle()
+                    }.padding()
+                }
+            }.navigationTitle("TicTacToe")
         }.scrollContentBackground(.hidden)
     }
-    
+  
     func makeMove(row: Int, col: Int) {
-        guard !checkWin(player: .x) && !checkWin(player: .o) && !isDraw() else { return }
-        guard board[row][col] == .none else { return }
+        guard !checkWin(player: .x) && !checkWin(player: .o) && !isDraw() else {
+            return
+        }
+        guard board[row][col] == .none else {
+            return
+        }
         
         board[row][col] = currentPlayer
-        currentPlayer = (currentPlayer == .x) ? .o : .x
+        currentPlayer = currentPlayer == .x ? .o : .x
     }
     
     func checkWin(player: Player) -> Bool {
-        // check horizontal/vertical
+        // for i in 0..<3!!! 바디 밖에서는 for i in 0..<3 쓰기!
+        // 바디 안에서는 ForEach(0..<3) 가능!
         for i in 0..<3 {
-            if board[i][0] == player &&  board[i][1] == player && board[i][2] == player { return true }
+            if board[i][0] == player && board[i][1] == player && board[i][2] == player {
+                return true
+            }
             if board[0][i] == player && board[1][i] == player && board[2][i] == player {
                 return true
             }
         }
         
-        // check diagonal
         if board[0][0] == player && board[1][1] == player && board[2][2] == player {
             return true
         }
@@ -137,7 +140,9 @@ struct ContentView: View {
         board = Array(repeating: Array(repeating: .none, count: 3), count: 3)
         currentPlayer = .x
     }
+    
 }
+   
 
 #Preview {
     ContentView()
