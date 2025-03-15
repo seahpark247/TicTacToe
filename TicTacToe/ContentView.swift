@@ -17,7 +17,7 @@ struct Cell: ViewModifier {
             .font(.system(size: 50))
             .foregroundColor(.black)
             .frame(width: 80, height: 80)
-            .background(.gray.opacity(0.3))
+            .background(.black.opacity(0.3))
             .cornerRadius(10)
     }
 }
@@ -63,7 +63,7 @@ struct ContentView: View {
         NavigationStack {
             ZStack {
                 Text("").frame(maxWidth: .infinity, maxHeight: .infinity).background(.indigo.gradient).ignoresSafeArea()
-                
+            
                 VStack {
                     HStack {
                         Spacer()
@@ -71,9 +71,11 @@ struct ContentView: View {
                             ForEach(0..<3) { col in
                                 HStack {
                                     ForEach(0..<3) { row in
-                                        Button { makeMove(row: row, col: col) } label: {
-                                            Text(board[row][col] == .x ? "X" : Bool(board[row][col] == .o) ? "O" : "").cellStyle()
-                                            // 버튼 그리고 그 안에 라벨 텍스트에다가 스타일 달아야 함!
+                                        Button {
+                                            makeMove(row: row, col: col)
+                                        } label: {
+                                            // Text(board[row][col] == .x ? "X" : board[row][col] == .o ? "O" : "").cellStyle()! 텍스트칸에 보드 체크해서 엑스 갖고있으면 엑스 넣어주는 식!!
+                                            Text(board[row][col] == .x ? "X" : board[row][col] == .o ? "O" : "").cellStyle()
                                         }
                                     }
                                 }
@@ -85,22 +87,18 @@ struct ContentView: View {
                     .background(.regularMaterial)
                     
                     HStack {
-                        Button("Restart") {
-                            resetGame()
-                        }.buttonStyle()
+                        Button("Restart", action: resetBoard)
+                            .buttonStyle()
                         Spacer()
-                        Text(checkWin(player: .x) ? "X is won!" : checkWin(player: .o) ? "O is won!" : isDraw() ? "Draw!" : "Playing...").statusStyle()
+                        Text(checkWinner(player: .x) ? "X is won!" : checkWinner(player: .o) ? "O is won!" : isDraw() ? "Draw!" : "Playing...").statusStyle()
                     }.padding()
                 }
             }.navigationTitle("TicTacToe")
         }.scrollContentBackground(.hidden)
     }
-  
+    
     func makeMove(row: Int, col: Int) {
-        guard !checkWin(player: .x) && !checkWin(player: .o) && !isDraw() else {
-            return
-        }
-        guard board[row][col] == .none else {
+        guard board[row][col] == .none && !checkWinner(player: .x) && !checkWinner(player: .o) else {
             return
         }
         
@@ -108,9 +106,7 @@ struct ContentView: View {
         currentPlayer = currentPlayer == .x ? .o : .x
     }
     
-    func checkWin(player: Player) -> Bool {
-        // for i in 0..<3!!! 바디 밖에서는 for i in 0..<3 쓰기!
-        // 바디 안에서는 ForEach(0..<3) 가능!
+    func checkWinner(player: Player) -> Bool {
         for i in 0..<3 {
             if board[i][0] == player && board[i][1] == player && board[i][2] == player {
                 return true
@@ -131,19 +127,18 @@ struct ContentView: View {
     }
     
     func isDraw() -> Bool {
-        return board.allSatisfy { row in
+        board.allSatisfy { row in
             row.allSatisfy { $0 != .none }
         }
     }
     
-    func resetGame() {
+    func resetBoard() {
         board = Array(repeating: Array(repeating: .none, count: 3), count: 3)
         currentPlayer = .x
     }
     
 }
    
-
 #Preview {
     ContentView()
 }
