@@ -74,7 +74,7 @@ struct ContentView: View {
                                         Button {
                                             makeMove(row: row, col: col)
                                         } label: {
-                                            // Text(board[row][col] == .x ? "X" : board[row][col] == .o ? "O" : "").cellStyle()! 텍스트칸에 보드 체크해서 엑스 갖고있으면 엑스 넣어주는 식!!
+                                            // !!!
                                             Text(board[row][col] == .x ? "X" : board[row][col] == .o ? "O" : "").cellStyle()
                                         }
                                     }
