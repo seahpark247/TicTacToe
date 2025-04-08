@@ -90,7 +90,7 @@ struct ContentView: View {
                         Button("Restart", action: resetBoard)
                             .buttonStyle()
                         Spacer()
-                        Text(checkWinner(player: .x) ? "X is won!" : checkWinner(player: .o) ? "O is won!" : isDraw() ? "Draw!" : "Playing...").statusStyle()
+                        Text(checkWinner(player: .x) ? "X wins!" : checkWinner(player: .o) ? "O wins!" : isDraw() ? "Draw!" : "Playing...").statusStyle()
                     }.padding()
                 }
             }.navigationTitle("TicTacToe")
