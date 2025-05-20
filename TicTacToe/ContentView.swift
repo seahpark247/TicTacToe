@@ -94,7 +94,7 @@ struct ContentView: View {
                     }.padding()
                 }
             }.navigationTitle("TicTacToe")
-        }.scrollContentBackground(.hidden)
+        }
     }
     
     func makeMove(row: Int, col: Int) {
