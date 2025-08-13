@@ -30,6 +30,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		110C8D4E2E4CE09D00B8DDDA /* images */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = images;
+			sourceTree = "<group>";
+		};
 		11B85EC92D7E797100E54A46 /* TicTacToe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TicTacToe;
@@ -75,6 +80,7 @@
 		11B85EBE2D7E797100E54A46 = {
 			isa = PBXGroup;
 			children = (
+				110C8D4E2E4CE09D00B8DDDA /* images */,
 				11B85EC92D7E797100E54A46 /* TicTacToe */,
 				11B85EDA2D7E797200E54A46 /* TicTacToeTests */,
 				11B85EE42D7E797200E54A46 /* TicTacToeUITests */,
@@ -108,6 +114,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				110C8D4E2E4CE09D00B8DDDA /* images */,
 				11B85EC92D7E797100E54A46 /* TicTacToe */,
 			);
 			name = TicTacToe;
