@@ -8,6 +8,9 @@ Features real-time **win/draw detection**, a **restart function**, and a clean, 
 ## Screenshots
 
 <p align="center">
+  <img src="./images/main_screenshot.png" alt="Playing" width="28%">
+  <img src="./images/main_screenshot2.png" alt="Win" width="28%">
+  <img src="./images/main_screenshot3.png" alt="Draw" width="28%">
   <img src="./images/main_screenshot.png" alt="Playing" width="250">
   <img src="./images/main_screenshot2.png" alt="Win" width="250">
   <img src="./images/main_screenshot3.png" alt="Draw" width="250">
