@@ -5,29 +5,46 @@ Features real-time **win/draw detection**, a **restart function**, and a clean, 
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 <p align="center">
-  <img src="./images/main_screenshot.png" alt="Playing" width="28%">
-  <img src="./images/main_screenshot2.png" alt="Win" width="28%">
-  <img src="./images/main_screenshot3.png" alt="Draw" width="28%">
+  <img src="./images/main_screenshot.png" alt="Playing" width="250">
+  <img src="./images/main_screenshot2.png" alt="Win" width="250">
+  <img src="./images/main_screenshot3.png" alt="Draw" width="250">
 </p>
 
 ---
 
-## ✨ Key Features
-- **SwiftUI-based UI** with modern styling
-- **Restart** button to reset the game instantly
-- **Win detection** for rows, columns, and diagonals
-- **Draw detection** when the board is full
-- Reusable **UI modifiers** for consistent design
+## Features
+* **Two-Player Local Play** – Alternate turns between X and O on the same device.
+* **Win Detection** – Automatically detects wins in rows, columns, and diagonals.
+* **Draw Detection** – Identifies stalemates when the board is full.
+* **Restart Button** – Reset the game instantly without relaunching.
+* **Clean UI Design** – Simple, intuitive, and responsive layout.
 
-## ▶️ How to Run
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/seahpark247/TicTacToe.git
+   cd TicTacToe
+2. Open the project in Xcode:
+   ```bash
+   open TicTacToe.xcodeproj
+3. Build and run the application on your device or simulator. 
+
+## How to Run
 1. Open the project in **Xcode 15** or newer.
 2. Select an iOS Simulator (e.g., iPhone 15).
-3. Press **Run** ▶️ to start the game.
+3. Launch the app.
+4. Tap any empty cell to place your mark (X or O).
+5. The game alternates turns automatically.
+6. The status text will display:
+* "X wins!" or "O wins!" when a player wins.
+* "Draw!" if the board is full with no winner.
+* "Playing..." during active play.
+7. Tap Restart to reset the board at any time.
 
-## 🖼️ How to Capture Screenshots
+## How to Capture Screenshots
 
 ### 1) Playing — `playing.png`
 Play until both **X** and **O** are visible, then take a screenshot.
@@ -54,7 +71,13 @@ Fill the board without a winner:
 
 > Use the **Restart** button to reset the board anytime.
 
-## 🛠 Code Overview
+## Technologies
+* Swift – Core development language.
+* SwiftUI – Declarative UI framework.
+* State Management – @State for board tracking and turn handling.
+* Custom View Modifiers – For reusable styles on cells, buttons, and status text.
+
+## Code Overview
 The game logic is handled in `ContentView.swift`:
 - `board: [[Player]]` — current state of the game board
 - `currentPlayer` — active player
@@ -68,5 +91,5 @@ The game logic is handled in `ContentView.swift`:
 - **RestartButton** — style for the restart button
 - **StatusText** — style for the game status label
 
-## 📜 License
+## License
 MIT License — free to use, modify, and share.
